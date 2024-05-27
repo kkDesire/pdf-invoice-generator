@@ -4,22 +4,22 @@ import {
   List,
   ShowButton,
   useTable,
-} from "@refinedev/antd";
-import { BaseRecord } from "@refinedev/core";
-import { Space, Table } from "antd";
+} from '@refinedev/antd'
+import type { BaseRecord } from '@refinedev/core'
+import { Space, Table } from 'antd'
 
-export const CategoryList = () => {
+export function CategoryList() {
   const { tableProps } = useTable({
     syncWithLocation: true,
-  });
+  })
 
   return (
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title={"ID"} />
-        <Table.Column dataIndex="title" title={"title"} />
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="title" />
         <Table.Column
-          title={"Actions"}
+          title="Actions"
           dataIndex="actions"
           render={(_, record: BaseRecord) => (
             <Space>
@@ -31,5 +31,5 @@ export const CategoryList = () => {
         />
       </Table>
     </List>
-  );
-};
+  )
+}

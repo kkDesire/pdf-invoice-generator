@@ -1,30 +1,30 @@
-import { Edit, useForm, useSelect } from "@refinedev/antd";
-import MDEditor from "@uiw/react-md-editor";
-import { Form, Input, Select } from "antd";
+import { Edit, useForm, useSelect } from '@refinedev/antd'
+import MDEditor from '@uiw/react-md-editor'
+import { Form, Input, Select } from 'antd'
 
-export const BlogPostEdit = () => {
+export function BlogPostEdit() {
   const { formProps, saveButtonProps, queryResult, formLoading } = useForm({
     meta: {
-      populate: ["category"],
+      populate: ['category'],
     },
-  });
+  })
 
-  const blogPostsData = queryResult?.data?.data;
+  const blogPostsData = queryResult?.data?.data
 
   const { selectProps: categorySelectProps } = useSelect({
-    resource: "categories",
+    resource: 'categories',
     defaultValue: blogPostsData?.category?.id,
     queryOptions: {
       enabled: !!blogPostsData?.category?.id,
     },
-  });
+  })
 
   return (
     <Edit saveButtonProps={saveButtonProps} isLoading={formLoading}>
       <Form {...formProps} layout="vertical">
         <Form.Item
-          label={"Title"}
-          name={["title"]}
+          label="Title"
+          name={['title']}
           rules={[
             {
               required: true,
@@ -34,7 +34,7 @@ export const BlogPostEdit = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          label={"Content"}
+          label="Content"
           name="content"
           rules={[
             {
@@ -45,8 +45,8 @@ export const BlogPostEdit = () => {
           <MDEditor data-color-mode="light" />
         </Form.Item>
         <Form.Item
-          label={"Category"}
-          name={["category", "id"]}
+          label="Category"
+          name={['category', 'id']}
           initialValue={formProps?.initialValues?.category?.id}
           rules={[
             {
@@ -57,9 +57,9 @@ export const BlogPostEdit = () => {
           <Select {...categorySelectProps} />
         </Form.Item>
         <Form.Item
-          label={"Status"}
-          name={["status"]}
-          initialValue={"draft"}
+          label="Status"
+          name={['status']}
+          initialValue="draft"
           rules={[
             {
               required: true,
@@ -67,16 +67,16 @@ export const BlogPostEdit = () => {
           ]}
         >
           <Select
-            defaultValue={"draft"}
+            defaultValue="draft"
             options={[
-              { value: "draft", label: "Draft" },
-              { value: "published", label: "Published" },
-              { value: "rejected", label: "Rejected" },
+              { value: 'draft', label: 'Draft' },
+              { value: 'published', label: 'Published' },
+              { value: 'rejected', label: 'Rejected' },
             ]}
             style={{ width: 120 }}
           />
         </Form.Item>
       </Form>
     </Edit>
-  );
-};
+  )
+}
